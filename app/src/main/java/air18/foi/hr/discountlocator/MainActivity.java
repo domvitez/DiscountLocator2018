@@ -25,6 +25,10 @@ import air18.foi.hr.database.MainDatabase;
 import air18.foi.hr.discountlocator.fragments.DiscountListFragment;
 import air18.foi.hr.discountlocator.helper.Util;
 
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
+
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener, NavigationView.OnNavigationItemSelectedListener, FragmentManager.OnBackStackChangedListener {
 
     private Util util = new Util();
@@ -38,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         MainDatabase.initDatabase(this);
-
+        AppCenter.start(getApplication(), "ab899bce-7e20-4f0d-b8bb-2a597c51a431", Analytics.class, Crashes.class);
         util.setLanguage(this);
 
         PreferenceManager.getDefaultSharedPreferences(this)
